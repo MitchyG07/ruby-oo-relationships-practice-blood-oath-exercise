@@ -39,8 +39,23 @@ class Cult
         @@all.select {|cult| cult.founding_year == founding_year}
     end 
 
+    def average_age
+        oaths.sum{|oath| oath.follower.age}/ oaths.count.to_f
+    end 
 
+    def my_followers_mottos
+        puts oaths.map{|oath| oath.follower.life_motto}
+    end 
 
+    def self.least_popular 
+        @@all.min_by {|cult| cult.cult_population}
+    end 
 
+    def self.most_common_location
+        locations = Cult.all.map {|cult| cult.location}
+        count = Hash.new(0)
+        locations.each {|v| count[v] += 1}
+        count.max_by{|k, v| v}.first 
+    end 
 
 end 

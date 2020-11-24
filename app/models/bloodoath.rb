@@ -12,4 +12,8 @@ class BloodOath
     def self.all
         @@all
     end 
+
+    def self.first_oath
+        @@all.map {|oath| oath.follower}.first
+    end 
 end 

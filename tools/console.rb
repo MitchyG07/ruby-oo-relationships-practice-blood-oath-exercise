@@ -9,6 +9,8 @@ end
 
 trump = Cult.new("Trump","Spokane","2016","MAGA")
 mcconnell = Cult.new("Mcconnell", "Senate", "2000", "Leave the bill on my desk")
+cruz = Cult.new("Cruz", "Senate", "2000", "I'm slimy")
+
 
 mitch = Follower.new("Mitch", 26, "election fraud lol")
 charlie = Follower.new("Charlie", 29, "we need a recount lol")
