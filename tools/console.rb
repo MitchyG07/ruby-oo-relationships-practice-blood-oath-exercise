@@ -14,6 +14,7 @@ cruz = Cult.new("Cruz", "Senate", "2000", "I'm slimy")
 
 mitch = Follower.new("Mitch", 26, "election fraud lol")
 charlie = Follower.new("Charlie", 29, "we need a recount lol")
+baby = Follower.new("Baby", 16, "Im a baby")
 
 b1 = BloodOath.new("2010", mitch, trump)
 b2 = BloodOath.new("2011", charlie, mcconnell)

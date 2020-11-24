@@ -33,8 +33,12 @@ class Follower
         oaths.map {|oath| oath.cult}
     end 
 
-    def join_cult(cult)
-        BloodOath.new(Time.now.to_s, self, cult)
+    def join_cult(cult) 
+        if self.age >= cult.minimum_age
+            BloodOath.new(Time.now.to_s, self, cult)
+        else              
+            "Sorry you are too young"
+        end
     end 
 
     def self.of_a_certain_age(age)
@@ -44,6 +48,13 @@ class Follower
     def self.top_ten
         @@all.max_by(10) {|follower| follower.follower_cults} 
     end 
-    
+
+    def fellow_cult_members
+        other = []
+        self.cults.each do |cult|
+            other = BloodOath.all.select {|oath| oath.cult == cult && oath.follower != self}
+        end 
+        other.map {|oath| oath.follower}.uniq
+    end 
 
 end 

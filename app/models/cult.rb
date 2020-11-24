@@ -1,5 +1,5 @@
 class Cult
-    attr_reader :founding_year 
+    attr_reader :founding_year, :minimum_age
     attr_accessor :name, :location, :slogan 
 
     @@all = []
@@ -15,8 +15,13 @@ class Cult
         @@all
     end
 
-    def recruit_follower(follower)
-        BloodOath.new(Time.now.to_s, follower, self)
+    def recruit_follower(name)
+        follower = Follower.all.find {|follower| follower == name}
+        if follower.age >= minimum_age
+            BloodOath.new(Time.now.to_s, name, self)
+        else             
+            "Sorry! You must be 18 to join this cult!"
+        end 
     end 
 
     def oaths 
@@ -56,6 +61,10 @@ class Cult
         count = Hash.new(0)
         locations.each {|v| count[v] += 1}
         count.max_by{|k, v| v}.first 
+    end 
+
+    def minimum_age
+        18 
     end 
 
 end 
